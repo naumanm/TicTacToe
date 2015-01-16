@@ -1,0 +1,53 @@
+/* this is my TicTacToe css
+
+Jan 15th
+*/
+
+/* is working */
+
+body {
+	background: light-gray;
+}
+
+h2 {
+  color: dark-gray;
+  font-family: arial;
+  text-align: center;
+}
+
+/* .col is working */
+.col {
+  margin: 0 auto;
+  width: 200px;
+  display: inline-block;
+}
+
+/* is working */
+.startButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  height: 50px;
+  width: 70px;
+  border: solid 2px yellow;
+  border-radius: 5px;
+  padding: 5px;
+  color: yellow;
+  background: black;
+}
+
+.blankButton {
+	background: blue;
+	border-color: red;
+	height: 150px;
+	width: 150px;
+	padding: 3px;
+	border: solid 2px red;
+}
+
+
+/* this is working */
+.center {
+  text-align: center;
+}
