@@ -1,17 +1,10 @@
+// - mikeNauman
 
 window.onload = main;
 
 function main() {
   // event listeners
   document.getElementById("myStartButton").addEventListener("click", startGame);
-}
-
-function clickSquare(squareValue) {
-
-	/* need to pass in state, X or O
-	onclick change state, 
-	make unselectable
-	*/
 }
 
 function startGame() {
@@ -45,6 +38,14 @@ function startGame() {
       console.log(whosTurn);
 
   } 
+}
+
+function clickSquare(squareValue) {
+
+	/* need to pass in state, X or O
+	onclick change state, 
+	make unselectable
+	*/
 }
 
 function checkIfWinner () {
