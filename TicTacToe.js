@@ -20,18 +20,21 @@ function startGame() {
   var winner = false;
 
   for (var i = 1; i < 10; i++) {
-  	
-//		prompt whoseTurn to pick a point
-//		square check //
-//			is clickable, use mouseover
+      // prompt user for input
+  	  // wait for user input...
+/*  	
+
+		square check
+		is clickable, use mouseover
 		
-//		clickSquare(whosTurn);
+		clickSquare(whosTurn);
 
-//		onclick change state, 
-//			assign whoseTurn
-//			make unselectable
-//       next turn
+		onclick change state, 
+		assign whoseTurn
+		make unselectable
+       next turn
 
+*/
 	  checkIfWinner();
 
       if (whosTurn == "X") {
