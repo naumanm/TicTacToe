@@ -3,11 +3,7 @@ window.onload = main;
 
 function main() {
   // event listeners
-  document.getElementById("startButton").addEventListener("click", startButtonReady);
-}
-
-function startButtonReady () {
-  window.alert("button works");
+  document.getElementById("myStartButton").addEventListener("click", startGame);
 }
 
 function clickSquare(squareValue) {
@@ -16,47 +12,39 @@ function clickSquare(squareValue) {
 	onclick change state, 
 	make unselectable
 	*/
-
 }
 
-/*
-
 function startGame() {
-	button click triggers main loop
+  console.log("Start the Game!");
+  var whosTurn = "X";
+  var winner = false;
 
-	 var winner = false;
-
-	 var whosTurn = "X";
-
-	 loop while !winner 
-		prompt whoseTurn to pick a point
-		square check 
-			is clickable, use mouseover
+  for (var i = 1; i < 10; i++) {
+  	
+//		prompt whoseTurn to pick a point
+//		square check //
+//			is clickable, use mouseover
 		
-		clickSquare(whosTurn);
+//		clickSquare(whosTurn);
 
-		onclick change state, 
-			assign whoseTurn
-			make unselectable
+//		onclick change state, 
+//			assign whoseTurn
+//			make unselectable
+//       next turn
 
+	  checkIfWinner();
 
-		checkIfWinner();
+      if (whosTurn == "X") {
+        whosTurn = "O"; 
+      } else {
+        whosTurn = "X";
+      }
+      console.log(whosTurn);
 
-		if whosTurn = "X" {
-			set whosTurn = "O";
-		} else {
-			set whosTurn = "X";
-		};
-
-
+  } 
 }
 
 function checkIfWinner () {
 	// will check to see if there is a winner by 
 	// looking at the values of each 
 }
-
-*/
-
-// Lets get this party started
-window.onload = startButtonReady;
