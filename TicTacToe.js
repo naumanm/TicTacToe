@@ -1,4 +1,4 @@
-// - mikeNauman
+// - mikeNauman --
 
 window.onload = main;
 
