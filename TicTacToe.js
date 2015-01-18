@@ -11,24 +11,23 @@ function gameLoop() {
   //---------------------------------------
   // setup 
   var whosTurn = "X";
-  var winner = false;
 
   // get a list of all the game squares
   var mySquares = document.getElementsByClassName("mySquare");
 
   // Assign listener to the game squares "mySquares[j]"" 
   for(var j = 0; j < mySquares.length; j++) {
-    mySquares[j].addEventListener("click", assignSquare());	
+    mySquares[j].addEventListener("click", squareClicked());	
   }
 
   //---------------------------------------
   // main game loop
-  for (var i = 1; i < 9; i++) {
+  for (var i = 1; i < 10; i++) {
     // debugging
     console.log("gameLoop: " + i);
     console.log("whos turn " + whosTurn);
 
-    // nextTurn();
+    nextTurn(whosTurn);  
 
     // checks to see if the last click won the game
 	checkIfWinner();
@@ -41,37 +40,29 @@ function gameLoop() {
   }
 } 
 
-
-function assignSquare() {
-
-  console.log("Assign listeners: ");
-  var selected = false;
-
-    //var myID = event.target.getElementById.getAttribute("id");
-
-
-    // can we do a while (timeout is not null)?  
-
-
-    //console.log(myID);
-    
-    /*  This is going to wait for a click
-    while (selected) {
-	}
-    
-
-	need to pass in state, X or O
-	onclick change state, 
-	make unselectable
-    square check
-    is clickable, use mouseover
+function nextTurn(squareValue) {
   
-    return X or O and ID
-  */
+  console.log("from inside nextTurn: " + squareValue);
+
+  var test = false;
+  while (test) {
+  //  this is where we wait this is our loop
+  //  squareValue the X 0 O
+    return (true);
+  }
+
+}
+
+function squareClicked() {
+
+  return true;
+
 }
 
 function checkIfWinner () {
 	// will check to see if there is a winner by 
+  var winner = false
+
 	//if (winner) {
       console.log("Do we have a winner?" );
       return winner;
