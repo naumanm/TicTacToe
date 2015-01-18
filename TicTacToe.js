@@ -16,29 +16,21 @@ function gameLoop() {
   // get a list of all the game squares
   var mySquares = document.getElementsByClassName("mySquare");
 
-  // Assign listener to the game squares
+  // Assign listener to the game squares "mySquares[j]"" 
   for(var j = 0; j < mySquares.length; j++) {
-    mySquares[j].addEventListener("click", nextTurn(whosTurn));	
+    mySquares[j].addEventListener("click", assignSquare());	
   }
 
   //---------------------------------------
   // main game loop
-  for (var i = 1; i < 10; i++) {
+  for (var i = 1; i < 9; i++) {
     // debugging
     console.log("gameLoop: " + i);
     console.log("whos turn " + whosTurn);
 
+    // nextTurn();
 
-  //   var reset = document.getElementById("reset");
-  //    reset.addEventListener("click", function (event) {
-  //      // Notice how I can reuse the groceries variable from above.
-  //      for (var i = 0; i < groceries.length; i++) {
-  //        groceries[i].setAttribute("class", "");
-  //      }
-  //      document.querySelector("img").setAttribute("src", "images/panic.jpeg");
-  //    });
-
-      // checks to see if the last click won the game
+    // checks to see if the last click won the game
 	checkIfWinner();
 
     if (whosTurn == "X") {
@@ -50,36 +42,39 @@ function gameLoop() {
 } 
 
 
-function nextTurn(whosTurn) {
+function assignSquare() {
 
-    console.log("nextTurn: " + whosTurn);
-    var selected = false;
-
+  console.log("Assign listeners: ");
+  var selected = false;
 
     //var myID = event.target.getElementById.getAttribute("id");
+
+
+    // can we do a while (timeout is not null)?  
+
 
     //console.log(myID);
     
     /*  This is going to wait for a click
     while (selected) {
 	}
-    */
+    
 
-	/* need to pass in state, X or O
+	need to pass in state, X or O
 	onclick change state, 
 	make unselectable
-	*/
-//		square check
-//		is clickable, use mouseover
-
-
-
+    square check
+    is clickable, use mouseover
+  
+    return X or O and ID
+  */
 }
 
 function checkIfWinner () {
 	// will check to see if there is a winner by 
 	//if (winner) {
-      console.log("The winner is?" );
+      console.log("Do we have a winner?" );
+      return winner;
 	//}
 	// looking at the values of each 
 }
