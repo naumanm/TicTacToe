@@ -15,14 +15,22 @@ h2 {
   text-align: center;
 }
 
-/* .col is working */
+.mySquare {
+  width: 150px;
+  height: 150px;
+}
+
+
+.gameBoard {
+  text-align: center;
+}
+
 .col {
   margin: 0 auto;
   width: 200px;
   display: inline-block;
 }
 
-/* is working */
 #myStartButton {
   display: block;
   margin-left: auto;
@@ -47,7 +55,3 @@ h2 {
 }
 
 
-/* this is working */
-.gameBoard {
-  text-align: center;
-}
