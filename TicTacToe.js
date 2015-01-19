@@ -1,67 +1,50 @@
 // - mikeNauman --
 
 window.onload = main;
+var whosTurn = "X";
+
 
 function main() {
   // Start game listener
-  document.getElementById("myStartButton").addEventListener("click", gameLoop);
+  document.getElementById("myStartButton").addEventListener("click", startGame);
 }
 
-function gameLoop() {
+function startGame() {
   //---------------------------------------
-  // setup 
-  var whosTurn = "X";
-
   // get a list of all the game squares
   var mySquares = document.getElementsByClassName("mySquare");
+  console.log(mySquares.length);
 
   // Assign listener to the game squares "mySquares[j]"" 
-  for(var j = 0; j < mySquares.length; j++) {
-    mySquares[j].addEventListener("click", squareClicked());	
+  for(var j = 1; j < mySquares.length; j++) {
+    mySquares[j].addEventListener("click", oneTurn);
   }
-
-  //---------------------------------------
-  // main game loop
-  for (var i = 1; i < 10; i++) {
-    // debugging
-    console.log("gameLoop: " + i);
-    console.log("whos turn " + whosTurn);
-
-    nextTurn(whosTurn);  
-
-    // checks to see if the last click won the game
-	checkIfWinner();
-
-    if (whosTurn == "X") {
-      whosTurn = "O"; 
-    } else {
-      whosTurn = "X";
-    }
-  }
-} 
-
-function nextTurn(squareValue) {
-  
-  console.log("from inside nextTurn: " + squareValue);
-
-  var test = false;
-  while (test) {
-  //  this is where we wait this is our loop
-  //  squareValue the X 0 O
-    return (true);
-  }
-
 }
 
+  //---------------------------------------
+  // 
+function oneTurn () {
+  var isClicked = false;
+  console.log("whosTurn :" + whosTurn);
+
+  // checks to see if the last click won the game
+  checkIfWinner();
+
+  if (whosTurn == "X") {
+    return "O"; 
+  } else {
+    return "X";
+  } 
+}
+ 
 function squareClicked() {
-
-  return true;
-
+  console.log("I am inside squareClicked");
+  return false;
 }
 
 function checkIfWinner () {
 	// will check to see if there is a winner by 
-  var winner = false
+  var winner = false;
 
 	//if (winner) {
       console.log("Do we have a winner?" );
