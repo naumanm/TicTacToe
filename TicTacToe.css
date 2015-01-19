@@ -1,9 +1,4 @@
-/* - mikeNauman -- 
-
-Jan 15th
-*/
-
-/* is working */
+/* - mikeNauman -- */
 
 body {
 	background: light-gray;
@@ -15,20 +10,13 @@ h2 {
   text-align: center;
 }
 
-.mySquare {
-  width: 150px;
-  height: 150px;
-}
-
-
 .gameBoard {
   text-align: center;
 }
 
-.col {
-  margin: 0 auto;
-  width: 200px;
-  display: inline-block;
+.mySquare {
+  width: 150px;
+  height: 150px;
 }
 
 #myStartButton {
@@ -45,13 +33,5 @@ h2 {
   background: black;
 }
 
-.blankButton {
-	background: blue;
-	border-color: red;
-	height: 150px;
-	width: 150px;
-	padding: 3px;
-	border: solid 2px red;
-}
 
 
