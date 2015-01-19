@@ -19,10 +19,10 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
-  height: 50px;
-  width: 70px;
+  height: 75px;
+  width: 150px;
   border: solid 2px yellow;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 5px;
   color: yellow;
   background: black;
