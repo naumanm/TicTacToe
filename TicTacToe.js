@@ -24,8 +24,11 @@ of Tic Tac Toe against you. (Hint: look into the minimax algorithm).
 
 */
 
-window.onload = main;
+//------------------------------------------------------------------------------
 
+window.onload = startGame;
+
+// set two globals
 var whosTurn = "X";
 var gameBoard = [
   ["", "", ""],
@@ -33,32 +36,41 @@ var gameBoard = [
   ["", "", ""]
 ];
 
-//for(var i = 1; i < 10; i++) {
-//  document.getElementById("p" + i).setAttribute("class", "");
-//  document.getElementById("p" + i).setAttribute("src", "./images/notselected.jpeg");
-//}
-
-
-
-function main() {
-  // TODO: Should do a reset
-
-
-   document.getElementById("myStartButton").addEventListener("click", startGame);
-}
-
+//------------------------------------------------------------------------------
+//
 function startGame() {
   for(var j = 1; j < 10; j++) {
     document.getElementById("p" + j).addEventListener("click", oneTurn);
   }
+
+  whosTurn = "X";
+  gameBoard = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+  ];
 }
 
-//---------------------------------------
-// 
+//------------------------------------------------------------------------------
+//
 function oneTurn () {
   var myID = this.id;  
   event.target.setAttribute("src", "./images/" + whosTurn + ".jpeg");
   this.setAttribute("class", whosTurn);
+
+  checkIfWinner(myID);
+
+  if (whosTurn == "X") {
+    whosTurn = "O";
+  } else {
+    whosTurn = "X";
+  } 
+}
+
+//------------------------------------------------------------------------------
+// 
+function checkIfWinner (myID) {
+  var winner = false;
 
   //  TODO: clean this up
 
@@ -72,9 +84,7 @@ function oneTurn () {
   if (myID == "p8" ) {gameBoard[2][1] = whosTurn;}
   if (myID == "p9" ) {gameBoard[2][2] = whosTurn;}
 
-  console.log("check to see if already clicked");
-  console.log(gameBoard);
-
+  // TODO: check to see if this is already clicked
 
   if ( // START CONDITIONAL
   	  ( // START X
@@ -145,64 +155,11 @@ function oneTurn () {
        )
      ) // CLOSE CONDITIONAL
   {
+    console.log("pass");
   	alert(whosTurn + " is the WINNER!");
   	//document.reload();
   } else {
     console.log("fail");
-  }
-  if (whosTurn == "X") {
-    whosTurn = "O";
-  } else {
-    whosTurn = "X";
-  } 
-
-}
-
-//---------------------------------------
-// 
-function checkIfWinner (cellID) {
-  var winner = false;
-
-  // set the cellID to whosTurn
-
-  console.log("THIS is my cell Id: "); 
-  console.log(cellID); 
-  console.log(whosTurn); 
-  console.log(gameBoard); 
-  
-  if (cellID == "p1" ) {gameBoard[0][0] = whosTurn;}
-  if (cellID == "p2" ) {gameBoard[0][1] = whosTurn;}
-  if (cellID == "p3" ) {gameBoard[0][2] = whosTurn;}
-  if (cellID == "p4" ) {gameBoard[1][0] = whosTurn;}
-  if (cellID == "p5" ) {gameBoard[1][1] = whosTurn;}
-  if (cellID == "p6" ) {gameBoard[1][2] = whosTurn;}
-  if (cellID == "p7" ) {gameBoard[2][0] = whosTurn;}
-  if (cellID == "p8" ) {gameBoard[2][1] = whosTurn;}
-  if (cellID == "p9" ) {gameBoard[2][2] = whosTurn;}
-
-  console.log(gameBoard); 
-
-  // if (cellID == "p1" ) {console.log("this is a test");}
-
-  // if (
-  //      (  	  
-  // 	    ((gameBoard[0][0] == "X") && (gameBoard[0][1] == "X") && (gameBoard[0][2] = "X")) ||
-  //       ((gameBoard[1][0] == "X") && (gameBoard[1][1] == "X") && (gameBoard[1][2] = "X")) ||
-  //       ((gameBoard[2][0] == "X") && (gameBoard[2][1] == "X") && (gameBoard[2][2] = "X"))
-  //      ) ||
-  //      (
-  // 	    ((gameBoard[0][0] == "X") && (gameBoard[1][0] == "X") && (gameBoard[2][0] = "X")) ||
-  //       ((gameBoard[0][1] == "X") && (gameBoard[1][1] == "X") && (gameBoard[2][1] = "X")) ||
-  //       ((gameBoard[0][2] == "X") && (gameBoard[1][2] == "X") && (gameBoard[2][2] = "X"))
-  //      )
-  //    )  
-
-  if ((gameBoard[0][0] == "X") && (gameBoard[0][1] == "X") && (gameBoard[0][2] = "X")) {
-    console.log(whosTurn + " is the winner!");
-    return true;
-  } else {
-    console.log(whosTurn + " go next");
-    return true;
   }
 }
 
