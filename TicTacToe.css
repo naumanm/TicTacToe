@@ -4,7 +4,7 @@ body {
 	background: light-gray;
 }
 
-h2 {
+h1 {
   color: dark-gray;
   font-family: arial;
   text-align: center;
@@ -12,11 +12,6 @@ h2 {
 
 .gameBoard {
   text-align: center;
-}
-
-.mySquare {
-  width: 150px;
-  height: 150px;
 }
 
 #myStartButton {

@@ -3,6 +3,11 @@
 window.onload = main;
 
   var whosTurn = "X";
+  var gameBoard = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+  ];
 
 function main() {
   // TODO: Should do a reset
@@ -13,34 +18,9 @@ function main() {
 }
 
 function startGame() {
-  
-  //document.getElementById("myStartButton").removeEventListener("click", startGame, false);
-  
-/*
-  //---------------------------------------
-  // get a list of all the game squares
-  // var mySquares = document.getElementsByClassName("mySquare");
-  // console.log(mySquares.length);
-  // console.log(mySquares);
-
-  // Assign listener to the game squares "mySquares[j]"" 
-  // for(var j = 1; j < mySquares.length; j++) {
-  //   mySquares[j].addEventListener("click", oneTurn);
-  // }
-*/
-
-
-  // TODO: work around for the For loop above
-  document.getElementById("p1").addEventListener("click", oneTurn);
-  document.getElementById("p2").addEventListener("click", oneTurn);
-  document.getElementById("p3").addEventListener("click", oneTurn);
-  document.getElementById("p4").addEventListener("click", oneTurn);
-  document.getElementById("p5").addEventListener("click", oneTurn);
-  document.getElementById("p6").addEventListener("click", oneTurn);
-  document.getElementById("p7").addEventListener("click", oneTurn);
-  document.getElementById("p8").addEventListener("click", oneTurn);
-  document.getElementById("p9").addEventListener("click", oneTurn);
-
+  for(var j = 1; j < 10; j++) {
+    document.getElementById("p" + j).addEventListener("click", oneTurn);
+  }
 }
 
 //---------------------------------------
@@ -48,14 +28,9 @@ function startGame() {
 function oneTurn () {
   var myID = this.id;  
   event.target.setAttribute("src", "./images/" + whosTurn + ".jpeg");
+  this.setAttribute("class", whosTurn);
 
-  event.target.setAttribute("class", whosTurn);
-
-  console.log("whosTurn :" + whosTurn);
-  console.log("This should be the button id: " + myID);
-  
-  // checks to see if the last click won the game
-  checkIfWinner();
+  console.log(checkIfWinner(myID));
 
   if (whosTurn == "X") {
   	whosTurn = "O";
@@ -66,13 +41,55 @@ function oneTurn () {
 
 //---------------------------------------
 // 
-function checkIfWinner () {
-	// will check to see if there is a winner by 
+function checkIfWinner (cellID) {
   var winner = false;
 
-	//if (winner) {
-      console.log("Do we have a winner?" );
-      return winner;
-	//}
-	// looking at the values of each 
+  // set the cellID to whosTurn
+
+  console.log("my cell Id: "); 
+  console.log(cellID); 
+  console.log(gameBoard); 
+
+  // not the right way to do this
+
+  // for(var i = 1; i < 10; i++) {
+  //   if (cellID = "p1") {
+  //     gameBoard[0][0] = "X";
+  //   }
+  // }
+  
+  if (cellID == "p1" ) {gameBoard[0][0] = whosTurn;}
+  if (cellID == "p2" ) {gameBoard[0][1] = whosTurn;}
+  if (cellID == "p3" ) {gameBoard[0][2] = whosTurn;}
+  if (cellID == "p4" ) {gameBoard[1][0] = whosTurn;}
+  if (cellID == "p5" ) {gameBoard[1][1] = whosTurn;}
+  if (cellID == "p6" ) {gameBoard[1][2] = whosTurn;}
+  if (cellID == "p7" ) {gameBoard[2][0] = whosTurn;}
+  if (cellID == "p8" ) {gameBoard[2][1] = whosTurn;}
+  if (cellID == "p9" ) {gameBoard[2][2] = whosTurn;}
+  
+ 
+
+  if (
+       (  	  
+  	    ((p1 = "X") && (p2 = "X") && (p3 = "X")) &&
+        ((p4 = "X") && (p5 = "X") && (p6 = "X")) &&
+        ((p7 = "X") && (p8 = "X") && (p9 = "X"))
+       ) &&
+       (
+  	    ((p1 = "X") && (p4 = "X") && (p7 = "X")) &&
+        ((p2 = "X") && (p5 = "X") && (p8 = "X")) &&
+        ((p3 = "X") && (p6 = "X") && (p9 = "X"))
+       )
+     )  
+  {
+    console.log("there is a winner!");
+  }
+
+
 }
+
+
+
+
+
