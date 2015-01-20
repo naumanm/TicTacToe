@@ -90,6 +90,8 @@ function changeSquareBack () {
 //------------------------------------------------------------------------------
 
 function startGame() {
+  document.getElementById("nextTurn").removeAttribute("class");
+
   whosTurn = "X";
   gameBoard = [
     ["", "", ""],
@@ -117,6 +119,8 @@ function oneTurn () {
   this.setAttribute("class", whosTurn);
 
   if (checkIfWinner(myID)) {
+
+    document.getElementById("nextTurn").setAttribute("class", "h2Highlighted");
     document.getElementById("nextTurn").innerHTML = (whosTurn + " is the WINNER!");
 
     var myList = document.getElementsByTagName("img");
