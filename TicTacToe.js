@@ -1,6 +1,9 @@
-// - mikeNauman --
+/*
 
-/*  MINIMUM REQUIREMENTS
+-- mikeNauman --
+
+Minimum Requirements
+
 A user should be able to click on different squares to make a move.
 Every click will alternate between marking an X and O.
 Upon marking of an individual cell, use JavaScript to add a class to each 
@@ -26,7 +29,7 @@ of Tic Tac Toe against you. (Hint: look into the minimax algorithm).
 
 //------------------------------------------------------------------------------
 
-window.onload = startGame;
+window.onload = main;
 
 // set two globals
 var whosTurn = "X";
@@ -37,38 +40,104 @@ var gameBoard = [
 ];
 
 //------------------------------------------------------------------------------
-//
-function startGame() {
-  for(var j = 1; j < 10; j++) {
-    document.getElementById("p" + j).addEventListener("click", oneTurn);
+
+function main() {
+  
+  // set listener to start game
+  document.getElementById("myStartButton").addEventListener("click", startGame);
+
+  // set listeners for highlighting
+  document.getElementById("myStartButton").addEventListener("mouseover", changeButton);
+  document.getElementById("myStartButton").addEventListener("mouseout", changeButtonBack);
+
+/*  TODO: dont highlight or select already been played
+  // highlighing for the grid
+  var highlightList = document.getElementsByTagName("img");
+  
+  for (var i = 0; i < highlightList.length; i++) {
+    highlightList[i].addEventListener("mouseover", changeSquare);
   }
 
+  for (var j = 0; j < highlightList.length; j++) {
+    highlightList[j].addEventListener("mouseout", changeSquareBack);
+  }
+*/
+
+}
+
+//------------------------------------------------------------------------------
+
+function changeButton () {
+  this.setAttribute("class", "highlightButton");
+  this.innerHTML = "GO!";
+}
+
+function changeButtonBack () {
+  document.getElementById("myStartButton").removeAttribute("class");
+  this.innerHTML = "New Game!";
+}
+
+/* TODO: need to get the highlighting done above
+function changeSquare () {
+  this.setAttribute("src", "images/notselectedHighlighted.jpeg");
+}
+
+function changeSquareBack () {
+  this.setAttribute("src", "images/notselected.jpeg");
+}
+*/
+
+//------------------------------------------------------------------------------
+
+function startGame() {
   whosTurn = "X";
   gameBoard = [
     ["", "", ""],
     ["", "", ""],
     ["", "", ""]
   ];
+
+  var myList = document.getElementsByTagName("img");
+  for (var i = 0; i < myList.length; i++) {
+    myList[i].setAttribute("src", "images/notselected.jpeg");
+    myList[i].removeEventListener("click", startGame);
+  }
+
+  document.getElementById("nextTurn").innerHTML = (whosTurn + " Starts the game!");
+  for(var j = 1; j < 10; j++) {
+    document.getElementById("p" + j).addEventListener("click", oneTurn);
+  }
 }
 
 //------------------------------------------------------------------------------
-//
+
 function oneTurn () {
   var myID = this.id;  
   event.target.setAttribute("src", "./images/" + whosTurn + ".jpeg");
   this.setAttribute("class", whosTurn);
 
-  checkIfWinner(myID);
+  if (checkIfWinner(myID)) {
+    document.getElementById("nextTurn").innerHTML = (whosTurn + " is the WINNER!");
 
-  if (whosTurn == "X") {
-    whosTurn = "O";
+    var myList = document.getElementsByTagName("img");
+    for (var i = 0; i < myList.length; i++) {
+      myList[i].setAttribute("src", "images/notselected.jpeg");
+    }
+
+    return;
+
   } else {
-    whosTurn = "X";
-  } 
+    if (whosTurn == "X") {
+      whosTurn = "O";
+    } else {
+      whosTurn = "X";
+    } 
+  }
+  document.getElementById("nextTurn").innerHTML = ("Next turn: " + whosTurn);
 }
 
 //------------------------------------------------------------------------------
-// 
+
 function checkIfWinner (myID) {
   var winner = false;
 
@@ -155,11 +224,9 @@ function checkIfWinner (myID) {
        )
      ) // CLOSE CONDITIONAL
   {
-    console.log("pass");
-  	alert(whosTurn + " is the WINNER!");
-  	//document.reload();
+  	return true;
   } else {
-    console.log("fail");
+  	return false;
   }
 }
 
