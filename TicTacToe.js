@@ -42,30 +42,25 @@ var gameBoard = [
 //------------------------------------------------------------------------------
 
 function main() {
-  
+
+  // message the user who starts the game
+  document.getElementById("nextTurn").innerHTML = (whosTurn + " Starts the game!");
+ 
   // set listener to start game
   document.getElementById("myStartButton").addEventListener("click", startGame);
 
-  // set listeners for highlighting
+  // set listeners for highlighting the start button
   document.getElementById("myStartButton").addEventListener("mouseover", changeButton);
   document.getElementById("myStartButton").addEventListener("mouseout", changeButtonBack);
-
-/*  TODO: dont highlight or select already been played
-  // highlighing for the grid
-  var highlightList = document.getElementsByTagName("img");
-  
-  for (var i = 0; i < highlightList.length; i++) {
-    highlightList[i].addEventListener("mouseover", changeSquare);
+ 
+  // this listens for each user to click a square
+  for(var i = 1; i < 10; i++) {
+    document.getElementById("p" + i).addEventListener("click", oneTurn);
   }
-
-  for (var j = 0; j < highlightList.length; j++) {
-    highlightList[j].addEventListener("mouseout", changeSquareBack);
-  }
-*/
-
 }
 
 //------------------------------------------------------------------------------
+// styling for the start button
 
 function changeButton () {
   this.setAttribute("class", "highlightButton");
@@ -77,35 +72,27 @@ function changeButtonBack () {
   this.innerHTML = "New Game!";
 }
 
-/* TODO: need to get the highlighting done above
-function changeSquare () {
-  this.setAttribute("src", "images/notselectedHighlighted.jpeg");
-}
-
-function changeSquareBack () {
-  this.setAttribute("src", "images/notselected.jpeg");
-}
-*/
-
 //------------------------------------------------------------------------------
 
 function startGame() {
+  // remove styling on the next turn h2 header
   document.getElementById("nextTurn").removeAttribute("class");
-
+  // reset for new game button
   whosTurn = "X";
   gameBoard = [
     ["", "", ""],
     ["", "", ""],
     ["", "", ""]
   ];
-
+  // reset all images to question marks
   var myList = document.getElementsByTagName("img");
   for (var i = 0; i < myList.length; i++) {
     myList[i].setAttribute("src", "images/notselected.jpeg");
     myList[i].removeEventListener("click", startGame);
   }
-
+  // change the next turn header to prompt user to start game
   document.getElementById("nextTurn").innerHTML = (whosTurn + " Starts the game!");
+  // listen for any click in the game grid
   for(var j = 1; j < 10; j++) {
     document.getElementById("p" + j).addEventListener("click", oneTurn);
   }
@@ -114,22 +101,18 @@ function startGame() {
 //------------------------------------------------------------------------------
 
 function oneTurn () {
-  var myID = this.id;  
+  var myID = this.id;
+  
   event.target.setAttribute("src", "./images/" + whosTurn + ".jpeg");
   this.setAttribute("class", whosTurn);
 
   if (checkIfWinner(myID)) {
-
-    document.getElementById("nextTurn").setAttribute("class", "h2Highlighted");
-    document.getElementById("nextTurn").innerHTML = (whosTurn + " is the WINNER!");
-
+    styleWinner();
     var myList = document.getElementsByTagName("img");
     for (var i = 0; i < myList.length; i++) {
       myList[i].setAttribute("src", "images/notselected.jpeg");
     }
-
     return;
-
   } else {
     if (whosTurn == "X") {
       whosTurn = "O";
@@ -142,9 +125,14 @@ function oneTurn () {
 
 //------------------------------------------------------------------------------
 
-function checkIfWinner (myID) {
-  var winner = false;
+function styleWinner() {
+  document.getElementById("nextTurn").setAttribute("class", "h2Highlighted");
+  document.getElementById("nextTurn").innerHTML = (whosTurn + " is the WINNER!");
+}
 
+//------------------------------------------------------------------------------
+
+function checkIfWinner (myID) {
   //  TODO: clean this up
 
   if (myID == "p1" ) {gameBoard[0][0] = whosTurn;}
@@ -156,8 +144,6 @@ function checkIfWinner (myID) {
   if (myID == "p7" ) {gameBoard[2][0] = whosTurn;}
   if (myID == "p8" ) {gameBoard[2][1] = whosTurn;}
   if (myID == "p9" ) {gameBoard[2][2] = whosTurn;}
-
-  // TODO: check to see if this is already clicked
 
   if ( // START CONDITIONAL
   	  ( // START X
@@ -225,7 +211,7 @@ function checkIfWinner (myID) {
   	      (gameBoard[1][1] == "O") &&
   	      (gameBoard[2][0] == "O")) 
          )
-       )
+       ) // END DIAGONALS
      ) // CLOSE CONDITIONAL
   {
   	return true;
@@ -233,4 +219,3 @@ function checkIfWinner (myID) {
   	return false;
   }
 }
-
